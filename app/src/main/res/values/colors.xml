@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue_remaining">#2980b9</color>
+    <color name="gree_accomplished">@color/light_sea_green</color>
+
+    <color name="background">@color/alice_blue</color>
+    <color name="primaryColor">@color/caribbean_green</color>
+    <color name="primaryColorDark">@color/light_sea_green</color>
+
+    <color name="colorAccent">@color/cape_honey</color>
+</resources>
