@@ -29,6 +29,11 @@
     <string name="minus_sign">-</string>
     <string name="settings">Settings</string>
     <string name="error">Error</string>
+    <string name="clear_progress">Clear progress?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="no_description">No description</string>
+    <string name="img_desc_show_hide">Show/Hide description.</string>
 
     <string name="select_action">Select an action!</string>
 
@@ -37,4 +42,5 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_about">About</string>
+
 </resources>

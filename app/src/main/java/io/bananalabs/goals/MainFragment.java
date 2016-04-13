@@ -1,5 +1,8 @@
 package io.bananalabs.goals;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -33,12 +37,16 @@ public class MainFragment extends Fragment {
     private LinearLayout mRemainingLinearLayout;
     private LinearLayout mAccomplishedLinearLayout;
     private TextView mAccomplishedTextView;
+    private TextView mDescriptionTextView;
+    private ImageButton mDescriptionButton;
 
     private Target mTarget;
     private MainFragmentListener mListener;
 
+    private boolean isDescriptionVisible = false;
+
     public interface MainFragmentListener {
-        void presentFragment(Fragment fragment);
+        void presentFragment(Fragment fragment, boolean addToBackStack);
     }
 
     public MainFragment() {
@@ -105,7 +113,7 @@ public class MainFragment extends Fragment {
 
     private void presentEditFragment() {
         if (mListener != null)
-            mListener.presentFragment(new EditGoalFragment());
+            mListener.presentFragment(new EditGoalFragment(), true);
     }
 
 
@@ -113,6 +121,7 @@ public class MainFragment extends Fragment {
         mNameTextView.setText(mTarget.getName());
         mTrackTestView.setText(String.format("%s / %s", mTarget.getCurrent().toString(), mTarget.getGoal().toString()));
         mAccomplishedTextView.setText(Float.toString(mTarget.getCurrentPercentage()) + "%");
+        mDescriptionTextView.setText(mTarget.description());
         updateGraph();
     }
 
@@ -136,14 +145,19 @@ public class MainFragment extends Fragment {
         mRemainingLinearLayout = (LinearLayout) view.findViewById(R.id.linear_accomplished);
         mAccomplishedLinearLayout = (LinearLayout) view.findViewById(R.id.linear_remaining);
         mAccomplishedTextView = (TextView) view.findViewById(R.id.text_accomplished);
+        mDescriptionButton = (ImageButton) view.findViewById(R.id.button_show);
+        mDescriptionTextView = (TextView) view.findViewById(R.id.text_description);
 
         mPlusButton.setOnClickListener(onRegisterClick);
         mMinusButton.setOnClickListener(onRegisterClick);
+        mMinusButton.setOnLongClickListener(onLongClick);
+        mDescriptionButton.setOnClickListener(onDescriptionClick);
     }
 
     private View.OnClickListener onRegisterClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            Utilities.closeKeyboard(getActivity());
             try {
                 boolean updateUI = false;
                 Long amount = Long.parseLong(mAmountEditView.getText().toString());
@@ -168,5 +182,39 @@ public class MainFragment extends Fragment {
             }
         }
     };
+
+    private View.OnClickListener onDescriptionClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            isDescriptionVisible = !isDescriptionVisible;
+            view.setSelected(isDescriptionVisible);
+            mDescriptionTextView.setVisibility(isDescriptionVisible ? View.VISIBLE : View.GONE);
+        }
+    };
+
+    private View.OnLongClickListener onLongClick = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View view) {
+            showClearDialog(getContext());
+            return true;
+        }
+    };
+
+    private void showClearDialog(@NonNull Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(R.string.clear_progress);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                mTarget.clearAmount();
+                updateUI();
+            }
+        }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        }).create().show();
+    }
 
 }

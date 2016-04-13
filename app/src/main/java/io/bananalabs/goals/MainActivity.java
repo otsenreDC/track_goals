@@ -6,22 +6,22 @@ import android.support.v7.app.AppCompatActivity;
 
 import io.bananalabs.goals.utilities.Utilities;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.MainFragmentListener{
+public class MainActivity extends AppCompatActivity implements MainFragment.MainFragmentListener {
 
-    private MainFragment mMainFragment;
+//    private MainFragment mMainFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mMainFragment = new MainFragment();
+        MainFragment mMainFragment = new MainFragment();
         mMainFragment.setMainFragmentListener(this);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, mMainFragment).commit();
+        presentFragment(mMainFragment, false);
     }
 
     @Override
-    public void presentFragment(Fragment fragment) {
-        Utilities.presentFragment(getSupportFragmentManager(), fragment, R.id.frame_main, true);
+    public void presentFragment(Fragment fragment, boolean addToBackStack) {
+        Utilities.presentFragment(getSupportFragmentManager(), fragment, R.id.frame_main, addToBackStack);
     }
 }

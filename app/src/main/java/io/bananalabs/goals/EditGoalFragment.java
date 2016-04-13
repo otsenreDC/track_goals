@@ -65,16 +65,19 @@ public class EditGoalFragment extends Fragment {
         final int id = item.getItemId();
         switch (id) {
             case R.id.action_save:
-                saveConfiguration();
-                getActivity().onBackPressed();
-                return true;
+                if (saveConfiguration()) {
+                    Utilities.closeKeyboard(getActivity());
+                    getActivity().onBackPressed();
+                    return true;
+                }
             default:
                 return super.onOptionsItemSelected(item);
         }
+
     }
 
 
-    private void saveConfiguration() {
+    private boolean saveConfiguration() {
         boolean assertRequired = Utilities.assertEditText(mNameEditText);
         assertRequired &= Utilities.assertEditText(mGoalEditText);
         if (assertRequired)
@@ -85,7 +88,8 @@ public class EditGoalFragment extends Fragment {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-    }
 
+        return assertRequired;
+    }
 
 }

@@ -8,7 +8,7 @@ import io.bananalabs.goals.utilities.Utilities;
 
 /**
  * Created by Ernesto De los Santos Cordero on 4/1/16.
- *
+ * <p/>
  * This class models the behavior of a goal;
  */
 public class Target {
@@ -94,5 +94,9 @@ public class Target {
 
     public void subtractAmountFromCurrent(float amount) {
         setCurrent(getCurrent() - amount);
+    }
+
+    public void clearAmount() {
+        setCurrent((float)0);
     }
 }

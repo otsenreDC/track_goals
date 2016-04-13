@@ -1,11 +1,14 @@
 package io.bananalabs.goals.utilities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,6 +26,7 @@ public class Utilities {
     public static void Toast(Context context, String message) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
+
     public static void Toast(Context context, int res) {
         Toast(context, context.getString(res));
     }
@@ -35,7 +39,7 @@ public class Utilities {
         t.commit();
     }
 
-    public static boolean assertEditText (EditText editText) {
+    public static boolean assertEditText(EditText editText) {
         String string = editText.getText().toString();
         if (!string.isEmpty()) {
             return true;
@@ -43,5 +47,11 @@ public class Utilities {
             editText.setError(editText.getContext().getString(R.string.error));
             return false;
         }
+    }
+
+    public static void closeKeyboard(@NonNull Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (activity.getCurrentFocus() != null)
+            imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 }

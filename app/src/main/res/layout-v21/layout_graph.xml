@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:weightSum="100">
+
+
+    <LinearLayout
+        android:id="@+id/linear_remaining"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        android:animateLayoutChanges="true"
+        android:background="@color/gree_accomplished"
+        android:orientation="vertical" />
+
+    <LinearLayout
+        android:id="@+id/linear_accomplished"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="80"
+        android:animateLayoutChanges="true"
+        android:background="@color/blue_remaining"
+        android:elevation="8dp"
+        android:gravity="center"
+        android:orientation="vertical"/>
+
+</LinearLayout>

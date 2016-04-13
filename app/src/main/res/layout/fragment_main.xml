@@ -3,18 +3,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:animateLayoutChanges="true"
     android:orientation="vertical"
     tools:context=".MainActivityFragment">
 
-    <TextView
-        android:id="@+id/text_name"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/target"
-        android:textSize="26sp" />
+        android:layout_margin="16dp">
 
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/target"
+            android:textSize="26sp" />
+
+        <ImageButton
+            android:id="@+id/button_show"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/visible_background"
+            android:contentDescription="@string/img_desc_show_hide" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:maxLines="3"
+        android:hint="@string/no_description"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/text_track"
@@ -29,47 +52,30 @@
         android:textSize="22sp" />
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:weightSum="100">
+        android:layout_weight="1">
 
-
-        <LinearLayout
-            android:id="@+id/linear_remaining"
+        <include
+            layout="@layout/layout_graph"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="20"
-            android:animateLayoutChanges="true"
-            android:background="@color/gree_accomplished"
-            android:orientation="vertical" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp" />
 
-        <LinearLayout
-            android:id="@+id/linear_accomplished"
+        <TextView
+            android:id="@+id/text_accomplished"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="80"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:gravity="center"
-            android:animateLayoutChanges="true"
-            android:background="@color/blue_remaining"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/text_accomplished"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-    </LinearLayout>
+            android:textColor="@color/alice_blue"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -95,7 +101,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/button_minus"
                 android:layout_width="wrap_content"
@@ -107,7 +112,6 @@
                 android:src="@drawable/tmp_minus"
                 app:backgroundTint="@color/pomegranate"
                 app:fabSize="mini" />
-
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/button_plus"
