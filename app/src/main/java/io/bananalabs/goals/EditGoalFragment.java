@@ -43,7 +43,7 @@ public class EditGoalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mTarget = Target.getInstance(getContext());
 
-        View view = inflater.inflate(R.layout.fragment_edit_goals, container, false);
+        View view = inflater.inflate(R.layout.fragment_target_edit, container, false);
 
         mNameEditText = (EditText) view.findViewById(R.id.edit_name);
         mNameEditText.setText(mTarget.getName());

@@ -4,28 +4,47 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import io.bananalabs.goals.utilities.Utilities;
+import za.co.cporm.model.CPDefaultRecord;
+import za.co.cporm.model.annotation.Column.Column;
+import za.co.cporm.model.annotation.Table;
 
 /**
  * Created by Ernesto De los Santos Cordero on 4/1/16.
  * <p/>
  * This class models the behavior of a goal;
  */
-public class Target {
+@Table
+public class Target extends CPDefaultRecord<Target>{
 
     private static final String GOAL_NAME = "Goals.Goal:name";
     private static final String GOAL_CURRENT = "Goals.Goal:current";
     private static final String GOAL_GOAL = "Goals.Goal:goal";
     private static final String GOAL_DESCRIPTION = "Goals.Goal:desciption";
 
+    @Column(required = true)
     private String mName;
+    @Column(required = false)
     private Float mCurrent;
+    @Column(required = true)
     private Float mGoal;
+    @Column(required = false)
     private String mDescription;
+    @Column(required = true)
+    private Date mTimestamp;
 
     private Context mContext;
 
     private static Target mTarget;
+
+    public Target() {
+        mCurrent = (float)0;
+        mGoal = (float)0;
+        mTimestamp = Calendar.getInstance().getTime();
+    }
 
     private Target(Context context) {
         this.mContext = context;
@@ -57,7 +76,7 @@ public class Target {
 
     public void setCurrent(Float current) {
         this.mCurrent = current;
-        Utilities.getSharedPrefences(mContext).edit().putFloat(GOAL_CURRENT, current).apply();
+//        Utilities.getSharedPrefences(mContext).edit().putFloat(GOAL_CURRENT, current).apply();
     }
 
     public Float getGoal() {
@@ -66,7 +85,7 @@ public class Target {
 
     public void setGoal(Float goal) {
         this.mGoal = goal;
-        Utilities.getSharedPrefences(mContext).edit().putFloat(GOAL_GOAL, goal).apply();
+//        Utilities.getSharedPrefences(mContext).edit().putFloat(GOAL_GOAL, goal).apply();
     }
 
     public String description() {
@@ -75,7 +94,15 @@ public class Target {
 
     public void description(String description) {
         this.mDescription = description;
-        Utilities.getSharedPrefences(mContext).edit().putString(GOAL_DESCRIPTION, description).apply();
+//        Utilities.getSharedPrefences(mContext).edit().putString(GOAL_DESCRIPTION, description).apply();
+    }
+
+    public Date getTimestamp() {
+        return mTimestamp;
+    }
+
+    public void setTimestamp(Date mTimestamp) {
+        this.mTimestamp = mTimestamp;
     }
 
     public Context getContext() {
@@ -97,6 +124,15 @@ public class Target {
     }
 
     public void clearAmount() {
-        setCurrent((float)0);
+        setCurrent((float) 0);
+    }
+
+    public static class TargetContrat {
+        public static final String COL_ID = "_id";
+        public static final String COL_NAME = "m_name";
+        public static final String COL_CURRENT = "m_current";
+        public static final String COL_GOAL = "m_goal";
+        public static final String COL_DESCRIPTION ="m_description";
+        public static final String COL_TIMESTAMP = "m_timestamp";
     }
 }

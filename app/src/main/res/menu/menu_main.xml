@@ -14,4 +14,10 @@
         android:orderInCategory="99"
         android:title="@string/action_edit"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_target_list"
+        android:orderInCategory="98"
+        android:title="@string/action_target_list"
+        app:showAsAction="never" />
 </menu>

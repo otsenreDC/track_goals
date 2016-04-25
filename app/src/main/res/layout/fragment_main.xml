@@ -125,8 +125,6 @@
                 android:src="@drawable/tmp_plus"
                 app:backgroundTint="@color/primaryColorDark"
                 app:fabSize="normal" />
-
-
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

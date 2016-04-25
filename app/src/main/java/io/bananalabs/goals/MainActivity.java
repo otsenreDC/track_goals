@@ -24,4 +24,5 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Main
     public void presentFragment(Fragment fragment, boolean addToBackStack) {
         Utilities.presentFragment(getSupportFragmentManager(), fragment, R.id.frame_main, addToBackStack);
     }
+
 }

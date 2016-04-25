@@ -26,6 +26,7 @@
     <string name="action_edit">Edit</string>
     <string name="action_save">Save</string>
     <string name="action_about">About</string>
+    <string name="action_target_list">Targets</string>
     <string name="minus_sign">-</string>
     <string name="settings">Settings</string>
     <string name="error">Error</string>
@@ -42,5 +43,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_about">About</string>
+    <string name="title_activity_target_list">TargetListActivity</string>
+    <string name="title_activity_target_show">TargetShowActivity</string>
+    <string name="title_activity_target_edit">TargetEditActivity</string>
 
 </resources>

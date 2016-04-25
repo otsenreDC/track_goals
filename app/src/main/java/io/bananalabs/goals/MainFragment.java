@@ -102,6 +102,9 @@ public class MainFragment extends Fragment {
             case R.id.action_about:
                 startActivity(new Intent(getContext(), AboutActivity.class));
                 return true;
+            case R.id.action_target_list:
+                startActivity(new Intent(getContext(), TargetListActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

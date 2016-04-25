@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.bananalabs.goals">
+    package="io.bananalabs.goals" >
 
     <application
+        android:name=".GoalsApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
 
+        <!-- CPOrm Configurations -->
+        <meta-data
+            android:name="CPORM_CONFIG"
+            android:value="io.bananalabs.goals.orm.GoalsCPOrmConfiguration" />
+        <meta-data
+            android:name="AUTHORITY"
+            android:value="io.bananalabs.goals" />
+
+        <provider
+            android:name="za.co.cporm.provider.CPOrmContentProvider"
+            android:authorities="io.bananalabs.goals"
+            android:exported="false"
+            android:process=":provider" />
 
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,6 +37,17 @@
             android:name=".AboutActivity"
             android:label="@string/title_activity_about"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".TargetListActivity"
+            android:label="@string/title_activity_target_list" />
+        <activity
+            android:name=".TargetShowActivity"
+            android:label="@string/title_activity_target_show" >
+        </activity>
+        <activity
+            android:name=".utilities.TargetEditActivity"
+            android:label="@string/title_activity_target_edit" >
+        </activity>
     </application>
 
 </manifest>
