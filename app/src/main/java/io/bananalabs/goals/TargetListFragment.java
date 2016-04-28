@@ -33,13 +33,6 @@ public class TargetListFragment extends Fragment implements LoaderManager.Loader
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_target_list, container, false);
 
-//        mAdapter = new SimpleCursorAdapter(
-//                getActivity(),
-//                android.R.layout.simple_list_item_1,
-//                null,
-//                new String[]{Target.TargetContrat.COL_NAME},
-//                new int[]{android.R.id.text1},
-//                0);
         mAdapter = new TargetAdapter(getActivity(), null, 0);
 
         ListView listView = (ListView) view.findViewById(R.id.list_targets);
